@@ -12,20 +12,23 @@ string ReadData(string msg)
     //считываем данные
     return Console.ReadLine() ?? "0";//возвращаем значение
 }
+
+// создаем массив из полученных данных
 string [] CreatArray(string stroka)
 {
-string[] inputArray = stroka.Split(' ');
+string[] inputArray = stroka.Split(' '); // элементы массива разделяются пробелом
 return inputArray; 
 }
 
+// метод находит элементы массива число символов в которых меньше или равно трём
 void FillExitingArray(string[] inputArray, string[] exitingArray)
 {
-    int count = 0;
+    int count = 0;                                  //объявляем дополнительную переменную, чтобы записать значения в новый массив по порядку
     for (int i = 0; i < inputArray.Length; i++)
     {
-    if(inputArray[i].Length <= 3)
+    if(inputArray[i].Length < 4)
         {
-        exitingArray[i] = inputArray[i];
+        exitingArray[count] = inputArray[i];
         count++;
         }
     }
@@ -34,7 +37,7 @@ void FillExitingArray(string[] inputArray, string[] exitingArray)
 //вывод результата
 void PrintArray(string[] array)
 {
-    
+    Console.WriteLine("Строки в которых 3 и менее символов:");
     for (int i = 0; i < array.Length; i++)
     {
         Console.Write($"{array[i]} ");
@@ -42,10 +45,11 @@ void PrintArray(string[] array)
     Console.WriteLine();
 }
 
-//___Программа___
-string stroka = ReadData("Введите массив символов через пробел.");
-string[] inputArray = CreatArray(stroka);
-string[] exitingArray = new string[inputArray.Length];
-FillExitingArray(inputArray, exitingArray);
+//___ПРОГРАММА___
+
+string stroka = ReadData("Введите массив символов через пробел:"); //запрос данных
+string[] inputArray = CreatArray(stroka);                          //создаем из данных массив 
+string[] exitingArray = new string[inputArray.Length];             //создаем второй массив, равный по длинне первому 
+FillExitingArray(inputArray, exitingArray);                        //заполняем второй массив значениями 
 Console.WriteLine();
-PrintArray(exitingArray);
+PrintArray(exitingArray);                                          //печатаем получившийся массив 
